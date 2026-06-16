@@ -182,6 +182,8 @@ Potentiometers (Battery Simulation) | 4
 Breadboard | 1
 Connecting Wires | As Required
 USB Cable | 1
+<img width="1673" height="688" alt="image" src="https://github.com/user-attachments/assets/98f2dd93-f57d-46e7-b633-177b6a97c22a" />
+
 
 </div></div>
 <p data-start="6397" data-end="6486">The system successfully detected cell imbalance and classified battery health accurately.</p>
