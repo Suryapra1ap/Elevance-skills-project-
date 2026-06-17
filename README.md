@@ -104,6 +104,8 @@ Feeds the executive analytics dashboard engine, serving localized hazard threat 
 | **3** | `Safety Isolation  | 🟥 **RED** | Severe Hazard | Overcharge/deep discharge verified; hardware isolation active. |
 
 
+---
+
 ## 🔌 Hardware Profile & Pin Configurations
 
 | ESP32 Pin | Peripheral Interface | Configuration Type | Logic Level / Protocol |
