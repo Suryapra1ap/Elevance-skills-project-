@@ -9,6 +9,7 @@
 </div>
 <hr />
 A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Battery Protection Kernel** on an ESP32 microcontroller. Engineered entirely on a non-blocking asynchronous `millis()` design paradigm, this system manages real-time cell balancing diagnostics, low-latency safety mitigations, localized HMI data rotation, and secure, high-throughput cloud telemetry distribution
+
 ---
 
 ## 📺 Live System Demonstration
