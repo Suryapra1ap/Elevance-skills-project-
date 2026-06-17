@@ -23,7 +23,7 @@ To evaluate system health, the battery intelligence engine processes localized v
 
 
 $$
-\text{Imbalance (\%)} = \frac{V_{\max} - V_{\min}}{V_{\text{avg}}} \times 100
+\text{Imbalance \%)} = \frac{V_{\max} - V_{\min}}{V_{\text{avg}}} \times 100
 $$
 
 
