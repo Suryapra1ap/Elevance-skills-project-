@@ -188,6 +188,7 @@ USB Cable | 1
 <hr data-start="6488" data-end="6491">
 
  <h1> Complete Wiring Summary <h1/><br/>
+  <br/>
   ESP32<br/>
 │<br/>
 ├── GPIO34 ← Pot1 Middle Pin (Cell 1)</br>
@@ -197,14 +198,14 @@ USB Cable | 1
 │</br>
 ├── GPIO21 ← LCD SDA</br>
 ├── GPIO22 ← LCD SCL</br>
-│
+│<br/>
 ├── 3.3V → Pot1 Left Pin</br>
 │         → Pot2 Left Pin</br>
 │         → Pot3 Left Pin</br>
 │         → Pot4 Left Pin</br>
 │</br>
 ├── 5V → LCD VCC</br>
-│
+│<br/>
 └── GND → LCD GND</br>
           Pot1 Right Pin</br>
           Pot2 Right Pin</br>
