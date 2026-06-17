@@ -7,9 +7,8 @@
   <img src="https://img.shields.io/badge/IoT-Blynk%20Cloud-rebeccapurple?style=for-the-badge&logo=blynk" alt="Blynk IoT">
   <img src="https://img.shields.io/badge/Architecture-Event--Driven%20%2F%20Non--Blocking-orange?style=for-the-badge" alt="Architecture">
 </div>
-A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Battery Protection Kernel** on an ESP32 microcontroller. Engineered entirely on a non-blocking asynchronous `millis()` design paradigm, this system manages real-time cell balancing diagnostics, low-latency safety mitigations, localized HMI data rotation, and secure, high-throughput cloud telemetry distribution
 <hr />
-
+A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Battery Protection Kernel** on an ESP32 microcontroller. Engineered entirely on a non-blocking asynchronous `millis()` design paradigm, this system manages real-time cell balancing diagnostics, low-latency safety mitigations, localized HMI data rotation, and secure, high-throughput cloud telemetry distribution
 ---
 
 ## 📺 Live System Demonstration
