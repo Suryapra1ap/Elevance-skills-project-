@@ -152,3 +152,17 @@ Feeds the executive analytics dashboard engine, serving localized hazard threat 
    #define BLYNK_AUTH_TOKEN    "YOUR_AUTH_TOKEN"
    ```
 4. Compile the binaries and flash the payload to your physical target ESP32 board, or copy the code directly into your Wokwi simulation instance.
+
+ ```
+
+## 🌿 Repository Architecture & Development Milestones
+
+This repository utilizes a modular branching strategy to track development milestones. Each phase of the project contains its own isolated firmware kernel, Wokwi schematics, and individual validation documentation.
+
+| Branch Name | Development Focus | Hardware Peripherals Integrated | Artifacts Included |
+| :--- | :--- | :--- | :--- |
+| [**`main`**](https://github.com/YOUR_USERNAME/YOUR_REPO) | **Executive System Integration**<br>The final production-grade concurrent 4-cell BMS. | 4x Cell Pots, I2C LCD, Relay, Buzzer, Fault LED, Async Blynk Cloud Engine | Full Core Code, System Readme, Integrated Video, Master Schematic |
+| [**`TASK-1-Adaptive-Multi-Cell-Battery-Intelligence-Enginee`**](https://github.com/Suryapra1ap/Elevance-skills-project-/tree/TASK-1-Adaptive-Multi-Cell-Battery-Intelligence-Engine) | **Multi-Cell Telemetry & HMI**<br>Validation of core 4-cell parallel ADC tracking. | 4x Cell Potentiometers, LiquidCrystal I2C Display | Isolated Code, Task Readme, Hardware Schematic, Demo Video |
+| [**`TASK-2-Event-Driven-Safety-Protection-Kernel`**]([https://github.com/YOUR_USERNAME/YOUR_REPO/tree/task-2-milestone](https://github.com/Suryapra1ap/Elevance-skills-project-/tree/TASK-2-Event-Driven-Safety-Protection-Kernel)) | **Hardware Protection Layer**<br>Validation of hardware-level isolation trip loops. | 1x Cell Pot, Low/High Voltage Buzzer Alarm, Isolation Relay | Isolated Code, Task Readme, Safety Logic Schematic, Demo Video |
+
+---
