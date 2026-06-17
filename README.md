@@ -187,9 +187,9 @@ USB Cable | 1
 <img width="1673" height="688" alt="image" src="https://github.com/user-attachments/assets/98f2dd93-f57d-46e7-b633-177b6a97c22a" />
 <hr data-start="6488" data-end="6491">
 
-  
-  ESP32
-│
+ <h1> Complete Wiring Summary <h1/><br/>
+  ESP32<br/>
+│<br/>
 ├── GPIO34 ← Pot1 Middle Pin (Cell 1)</br>
 ├── GPIO35 ← Pot2 Middle Pin (Cell 2)</br>
 ├── GPIO32 ← Pot3 Middle Pin (Cell 3)</br>
