@@ -20,7 +20,12 @@ A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Bat
 
 To evaluate system health, the battery intelligence engine processes localized variation models against live pack means. Cell imbalance analytics are processed using localized variation models against live pack means according to the following structural expression:
 
-$$Imbalance (\%) = \frac{V_{max} - V_{min}}{V_{avg}} \times 100$$
+
+
+$$
+\text{Imbalance (\%)} = \frac{V_{\max} - V_{\min}}{V_{\text{avg}}} \times 100
+$$
+
 
 This index drives the fault-tolerant state machine to identify cells suffering from accelerated degradation or micro-shorting before runtime failure occurs.
 
