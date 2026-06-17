@@ -188,7 +188,6 @@ USB Cable | 1
 <hr data-start="6488" data-end="6491">
 
  <h1> Complete Wiring Summary <h1/><br/>
-  <br/>
   ESP32<br/>
 │<br/>
 ├── GPIO34 ← Pot1 Middle Pin (Cell 1)</br>
@@ -211,6 +210,7 @@ USB Cable | 1
           Pot2 Right Pin</br>
           Pot3 Right Pin</br>
           Pot4 Right Pin</br>
+          <br/>
   
 <h1 data-start="6493" data-end="6511">13. Applications</h1>
 <ul data-start="6513" data-end="6676">
