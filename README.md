@@ -166,3 +166,5 @@ This repository utilizes a modular branching strategy to track development miles
 | [**`TASK-2-Event-Driven-Safety-Protection-Kernel`**](https://github.com/Suryapra1ap/Elevance-skills-project-/tree/TASK-2-Event-Driven-Safety-Protection-Kernel) | **Hardware Protection Layer**<br>Validation of hardware-level isolation trip loops. | 1x Cell Pot, Low/High Voltage Buzzer Alarm, Isolation Relay | Isolated Code, Task Readme, Safety Logic Schematic, Demo Video |
 
 ---
+
+
