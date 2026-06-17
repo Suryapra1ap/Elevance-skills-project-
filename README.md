@@ -221,13 +221,3 @@ Status : MINOR IMBALANCE
 <hr>
 
 <h2>📜 License</h2>
-
-<p>
-This project is developed for educational, internship, and learning purposes.
-</p>
-
-<hr>
-
-<p align="center">
-⭐ If you found this project useful, consider giving it a star on GitHub!
-</p>
