@@ -79,6 +79,9 @@ The cloud telemetry layout uses strict semantic typing and severity-based state 
 | **V7** | `Operator Advisory` | String | Live contextual instructions forwarded from the advisory layer |
 | **V8** | `Risk Index` | Enum | Severity index running automated UI color shifting |
 
+<img width="1441" height="402" alt="image" src="https://github.com/user-attachments/assets/b9f7ec06-3db7-4309-a19f-6f21ce56a5b1" />
+
+
 ### 🛠️ Executive State Vector Mappings (Enums)
 
 The system relies on strict semantic typing where firmware-level C++ enumerations are transmitted directly as integer values to populate matching specialized `Enum` datastreams on the cloud dashboard.
