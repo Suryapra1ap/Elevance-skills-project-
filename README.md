@@ -188,6 +188,53 @@ USB Cable | 1
 </div></div>
 <p data-start="6397" data-end="6486">The system successfully detected cell imbalance and classified battery health accurately.</p>
 <img width="1673" height="688" alt="image" src="https://github.com/user-attachments/assets/98f2dd93-f57d-46e7-b633-177b6a97c22a" />
+Hardware Connections (ESP32 + I2C LCD + 4 Potentiometers)
+ESP32 GPIO Pin Mapping
+Component	ESP32 Pin
+Cell 1 (Potentiometer 1 Output)	GPIO34
+Cell 2 (Potentiometer 2 Output)	GPIO35
+Cell 3 (Potentiometer 3 Output)	GPIO32
+Cell 4 (Potentiometer 4 Output)	GPIO33
+LCD SDA	GPIO21
+LCD SCL	GPIO22
+LCD VCC	5V
+LCD GND	GND
+Potentiometer Connections
+
+Each potentiometer simulates one battery cell.
+
+Potentiometer 1 (Cell 1)
+Pot Pin	Connection
+Left Pin	3.3V
+Middle Pin	GPIO34
+Right Pin	GND
+Potentiometer 2 (Cell 2)
+Pot Pin	Connection
+Left Pin	3.3V
+Middle Pin	GPIO35
+Right Pin	GND
+Potentiometer 3 (Cell 3)
+Pot Pin	Connection
+Left Pin	3.3V
+Middle Pin	GPIO32
+Right Pin	GND
+Potentiometer 4 (Cell 4)
+Pot Pin	Connection
+Left Pin	3.3V
+Middle Pin	GPIO33
+Right Pin	GND
+I2C LCD Connections
+16×2 I2C LCD Module
+LCD Pin	ESP32 Pin
+GND	GND
+VCC	5V
+SDA	GPIO21
+SCL	GPIO22
+Power Connections
+ESP32 Pin	Connected To
+3.3V	All Potentiometer Left Pins
+GND	All Potentiometer Right Pins + LCD GND
+5V (VIN)	LCD VCC
 <hr data-start="6488" data-end="6491">
 <h1 data-start="6493" data-end="6511">13. Applications</h1>
 <ul data-start="6513" data-end="6676">
