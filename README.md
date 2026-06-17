@@ -1,6 +1,14 @@
-# 🔋 Executive Battery Intelligence Engine & 4-Cell BMS Kernel
+<div align="center">
+  <h1>🔋 Adaptive Multi-Cell Battery Intelligence Engine & Safety Kernel</h1>
+  <p><strong>An Automotive-Grade, Event-Driven Battery Management System (BMS) Architecture for ESP32 Systems</strong></p>
 
-A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Battery Protection Kernel** on an ESP32 microcontroller. Engineered entirely on a non-blocking asynchronous `millis()` design paradigm, this system manages real-time cell balancing diagnostics, low-latency safety mitigations, localized HMI data rotation, and secure, high-throughput cloud telemetry distribution.
+  <img src="https://img.shields.io/badge/Platform-ESP32-blue?style=for-the-badge&logo=espressif" alt="ESP32 Platform">
+  <img src="https://img.shields.io/badge/Simulator-Wokwi-green?style=for-the-badge" alt="Wokwi Simulator">
+  <img src="https://img.shields.io/badge/IoT-Blynk%20Cloud-rebeccapurple?style=for-the-badge&logo=blynk" alt="Blynk IoT">
+  <img src="https://img.shields.io/badge/Architecture-Event--Driven%20%2F%20Non--Blocking-orange?style=for-the-badge" alt="Architecture">
+</div>
+
+<hr />
 
 ---
 
