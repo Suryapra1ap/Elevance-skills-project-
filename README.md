@@ -79,18 +79,30 @@ The cloud telemetry layout uses strict semantic typing and severity-based state 
 | **V7** | `Operator Advisory` | String | Live contextual instructions forwarded from the advisory layer |
 | **V8** | `Risk Index` | Enum | Severity index running automated UI color shifting |
 
-### 🛠️ Executive State Vector Mappings
+### 🛠️ Executive State Vector Mappings (Enums)
 
-The **Risk Index (V8)** and **Runtime State (V6)** utilize predefined structural enums to drive conditional dashboard alerts:
+The system relies on strict semantic typing where firmware-level C++ enumerations are transmitted directly as integer values to populate matching specialized `Enum` datastreams on the cloud dashboard.
 
-```
-[0] Nominal Operation    --->   🟩 GREEN  ---> Asset healthy; passive balancing optimal
-[1] Degraded Warning     --->   🟨 YELLOW ---> Sensor anomaly or minor cell delta detected
-[2] Sensor Anomaly       --->   🟧 ORANGE ---> Critical hardware trace/harness verification needed
-[3] Safety Isolation     --->   🟥 RED    ---> Limit breach; isolation relay thrown instantly
-```
+#### 1. Runtime State Vector Mappings (Virtual Pin V6)
+Tracks the high-level operating loop execution state of the embedded micro-kernel. Configure your Blynk V6 Datastream options with the following parameters:
 
----
+| Incoming Value (INT) | Firmware Enum State | Dashboard Display String | Status Color Code | Engineering Definition |
+| :---: | :--- | :--- | :---: | :--- |
+| **0** | `NORMAL` | `System Nominal` | 🟩 **GREEN** | Pack healthy; active tracking loops running normally. |
+| **1** | `DEGRADED` | `Degraded Operations` | 🟨 **YELLOW** | Active hardware sensor anomaly or wire float detected. |
+| **2** | `FAILSAFE` | `Failsafe Protective Trip` | 🟧 **ORANGE** | Out-of-bounds limit hit; isolation relay opened. |
+| **3** | `SHUTDOWN` | `Emergency Shutdown` | 🟥 **RED** | Critical multi-system failure; manual recovery required. |
+
+#### 2. Risk Index Vector Mappings (Virtual Pin V8)
+Feeds the executive analytics dashboard engine, serving localized hazard threat levels for the physical battery asset. Configure your Blynk V8 Datastream options with the following parameters:
+
+| Incoming Value (INT) | Dashboard Outcome Text | UI Color Code | Asset Threat Status | Actionable Operational Meaning |
+| :---: | :--- | :---: | :--- | :--- |
+| **0** | `Nominal operation` | 🟩 **GREEN** | Safe State | Cell delta under bounds; asset performing within factory spec. |
+| **1** | `Degraded warning state` | 🟨 **YELLOW** | Minor Hazard | Low-level cell voltage divergence; passive balancing active. |
+| **2** | `Sensor anomaly hazard` | 🟧 **ORANGE** | Medium Hazard | Open circuit or rail voltage failure discovered on a cell pin. |
+| **3** | `Safety Isolation  | 🟥 **RED** | Severe Hazard | Overcharge/deep discharge verified; hardware isolation active. |
+
 
 ## 🔌 Hardware Profile & Pin Configurations
 
