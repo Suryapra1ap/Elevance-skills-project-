@@ -224,15 +224,3 @@ Components Used:
   <li>Event-Driven Programming</li>
   <li>Finite State Machine</li>
 </ul>
-
-<hr>
-
-<h2>👨‍💻 Author</h2>
-
-<p>
-Surya Pratap
-</p>
-
-<p>
-B.Tech Electronics & Communication Engineering
-</p>
