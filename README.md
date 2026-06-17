@@ -17,12 +17,12 @@
 
 <h3>Core Mathematical Core</h3>
 <p>Individual cell imbalance analytics are processed using localized variation models against live pack means:</p>
+
 $$
 \text{Imbalance (\%)} = \frac{V_{\max} - V_{\min}}{V_{\text{avg}}} \times 100
 $$
 
 <hr />
-
 <h2>🛠 Architecture Subsystems</h2>
 
 <h3>1. Adaptive Multi-Cell Battery Intelligence Engine</h3>
