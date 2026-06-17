@@ -44,6 +44,10 @@ BatteryPack bmsPack;
 RuntimeState currentRuntime = NORMAL;
 HmiScreen currentScreen = CELL_DATA;
 
+// Task 6: Executive Analytics Variables
+String operatorAdvisory = "SYSTEM READY";
+int riskIndex = 0; // 0=Nominal, 1=Low Risk, 2=Medium Risk, 3=Critical Hazard
+
 // Non-blocking Timing Anchors
 unsigned long lastHmiUpdate = 0;
 unsigned long lastScreenRotate = 0;
@@ -117,7 +121,7 @@ void runFaultTolerantKernel() {
 }
 
 // ==========================================
-// 3. Event-Driven Safety Protection Kernel (Optimized)
+// 3. Event-Driven Safety Protection Kernel
 // ==========================================
 void runSafetyProtectionKernel() {
     unsigned long now = millis();
@@ -199,23 +203,63 @@ void updateHMI() {
 }
 
 // ==========================================
-// 5. Intelligent Cloud Telemetry Architecture (Matched to Console Layout)
+// 6. Task 6: Executive Diagnostic & Advisory Engine
+// ==========================================
+void runDiagnosticEngine() {
+    if (currentRuntime == NORMAL) {
+        riskIndex = 0; // Nominal
+        if (bmsPack.imbalancePercent > 1.0) {
+            operatorAdvisory = "Optimizing: Passive cell balancing active.";
+        } else {
+            operatorAdvisory = "Nominal: Battery asset performing within spec.";
+        }
+    } 
+    else if (currentRuntime == DEGRADED) {
+        riskIndex = 1; // Low/Medium Risk
+        for (int i = 0; i < 4; i++) {
+            if (bmsPack.cellVoltages[i] < 0.1) {
+                operatorAdvisory = "Hardware Warning: Cell " + String(i + 1) + " open circuit detected. Verify harness.";
+                riskIndex = 2;
+            } else if (bmsPack.cellVoltages[i] > 4.49) {
+                operatorAdvisory = "Sensor Warning: Cell " + String(i + 1) + " ADC rail fault. Check bounds.";
+                riskIndex = 2;
+            }
+        }
+    } 
+    else if (currentRuntime == FAILSAFE || currentRuntime == SHUTDOWN) {
+        riskIndex = 3; // Critical Hazard
+        if (bmsPack.maxVoltage > V_OVERVOLTAGE) {
+            operatorAdvisory = "CRITICAL FAULT: Cell " + String(bmsPack.strongestCell) + " Overcharge (>4.25V)! Safety relay tripped.";
+        } else if (bmsPack.minVoltage < V_UNDERVOLTAGE) {
+            operatorAdvisory = "CRITICAL FAULT: Cell " + String(bmsPack.weakestCell) + " Deep Discharge (<3.00V)! Isolate pack immediately.";
+        } else if (bmsPack.imbalancePercent >= IMBALANCE_CRITICAL) {
+            operatorAdvisory = "CRITICAL FAULT: Pack Delta > 10% structural failure. Maintenance required.";
+        } else {
+            operatorAdvisory = "CRITICAL FAULT: Protective system automatic trip active.";
+        }
+    }
+}
+
+// ==========================================
+// 5. Intelligent Cloud Telemetry Architecture
 // ==========================================
 void handleCloudTelemetry() {
     unsigned long now = millis();
     
-    // Smooth 1.5-second live telemetry transmission interval
     if (Blynk.connected() && (now - lastTelemetryUpdate > 1500)) {
         lastTelemetryUpdate = now;
         
-        // This structural block perfectly targets your explicit cloud mapping
-        Blynk.virtualWrite(V0, bmsPack.totalVoltage);      // V0: total pack voltage
-        Blynk.virtualWrite(V1, bmsPack.cellVoltages[0]);   // V1: cell 1
-        Blynk.virtualWrite(V2, bmsPack.cellVoltages[1]);   // V2: cell 2
-        Blynk.virtualWrite(V3, bmsPack.cellVoltages[2]);   // V3: cell 3
-        Blynk.virtualWrite(V4, bmsPack.cellVoltages[3]);   // V4: cell 4
-        Blynk.virtualWrite(V5, bmsPack.imbalancePercent); // V5: cell imbalance
-        Blynk.virtualWrite(V6, currentRuntime);            // V6: runtime state
+        Blynk.virtualWrite(V0, bmsPack.totalVoltage);
+        Blynk.virtualWrite(V1, bmsPack.cellVoltages[0]);
+        Blynk.virtualWrite(V2, bmsPack.cellVoltages[1]);
+        Blynk.virtualWrite(V3, bmsPack.cellVoltages[2]);
+        Blynk.virtualWrite(V4, bmsPack.cellVoltages[3]);
+        Blynk.virtualWrite(V5, bmsPack.imbalancePercent);
+        Blynk.virtualWrite(V6, currentRuntime);
+        
+        // Task 6: Stream Executive Dashboard Additions
+        Blynk.virtualWrite(V7, operatorAdvisory);
+        Blynk.virtualWrite(V8, riskIndex);
     }
 }
 
@@ -237,6 +281,7 @@ void loop() {
     runBatteryIntelligenceEngine();
     runFaultTolerantKernel();
     runSafetyProtectionKernel();
+    runDiagnosticEngine(); // Executing Task 6 diagnostics
     updateHMI();
     
     if (Blynk.connected()) {
