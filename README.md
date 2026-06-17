@@ -17,7 +17,9 @@
 
 <h3>Core Mathematical Core</h3>
 <p>Individual cell imbalance analytics are processed using localized variation models against live pack means:</p>
-<pre align="center">$$Imbalance (\%) = \frac{V_{max} - V_{min}}{V_{avg}} \times 100$$</pre>
+$$
+\text{Imbalance (\%)} = \frac{V_{\max} - V_{\min}}{V_{\text{avg}}} \times 100
+$$
 
 <hr />
 
