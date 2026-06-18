@@ -44,6 +44,9 @@ BatteryPack bmsPack;
 RuntimeState currentRuntime = NORMAL;
 HmiScreen currentScreen = CELL_DATA;
 
+// Cloud Override Flag (Task 6 Remote Kill-Switch)
+bool remoteShutdownActive = false; 
+
 // Task 6: Executive Analytics Variables
 String operatorAdvisory = "SYSTEM READY";
 int riskIndex = 0; // 0=Nominal, 1=Low Risk, 2=Medium Risk, 3=Critical Hazard
@@ -60,6 +63,21 @@ char ssid[] = "Wokwi-GUEST";
 char pass[] = "";
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+// ==========================================
+// Blynk Cloud Incoming Command Handler
+// ==========================================
+// V9 is configured as a Switch widget (0 = System Active, 1 = Remote Shutdown Force-Trip)
+BLYNK_WRITE(V9) {
+    int switchState = param.asInt();
+    if (switchState == 1) {
+        remoteShutdownActive = true;
+        Serial.println("WARN: Remote Emergency Shutdown Command Received from Blynk cloud!");
+    } else {
+        remoteShutdownActive = false;
+        Serial.println("INFO: Remote Emergency Shutdown Released.");
+    }
+}
 
 // ==========================================
 // 1. Adaptive Battery Intelligence Engine
@@ -103,8 +121,14 @@ void runBatteryIntelligenceEngine() {
 // 2. Fault-Tolerant Runtime Subsystem
 // ==========================================
 void runFaultTolerantKernel() {
+    // Priority 1: Cloud Emergency Shutdown Command
+    if (remoteShutdownActive) {
+        currentRuntime = SHUTDOWN;
+        return; 
+    }
+
+    // Priority 2: Sensor Wire Anomalies
     bool sensorAnomaly = false;
-    
     for (int i = 0; i < 4; i++) {
         if (bmsPack.cellVoltages[i] < 0.1 || bmsPack.cellVoltages[i] > 4.49) {
             sensorAnomaly = true;
@@ -143,7 +167,7 @@ void runSafetyProtectionKernel() {
             case FAILSAFE:
             case SHUTDOWN:
                 if (digitalRead(RELAY_PIN) == HIGH) {
-                    digitalWrite(RELAY_PIN, LOW);
+                    digitalWrite(RELAY_PIN, LOW); // Force isolation instantly
                     lastRelayAction = now;
                 }
                 tone(BUZZER_PIN, 1000);
@@ -174,7 +198,12 @@ void updateHMI() {
     }
     
     if (currentRuntime == FAILSAFE || currentRuntime == SHUTDOWN) {
-        lcd.setCursor(0, 0); lcd.print("!! SAFETY CRITICAL !!");
+        lcd.setCursor(0, 0); 
+        if (remoteShutdownActive) {
+            lcd.print("! REMOTE SHUTDOWN ! ");
+        } else {
+            lcd.print("!! SAFETY CRITICAL !!");
+        }
         lcd.setCursor(0, 1); lcd.print("RELAY: ISOLATED     ");
         lcd.setCursor(0, 2); lcd.print("FAULT DETECTED      ");
         return;
@@ -203,11 +232,17 @@ void updateHMI() {
 }
 
 // ==========================================
-// 6. Task 6: Executive Diagnostic & Advisory Engine
+// 6. Executive Diagnostic & Advisory Engine
 // ==========================================
 void runDiagnosticEngine() {
+    if (remoteShutdownActive) {
+        riskIndex = 3;
+        operatorAdvisory = "REMOTE OVERRIDE: Emergency system isolation active from Cloud HMI.";
+        return;
+    }
+
     if (currentRuntime == NORMAL) {
-        riskIndex = 0; // Nominal
+        riskIndex = 0; 
         if (bmsPack.imbalancePercent > 1.0) {
             operatorAdvisory = "Optimizing: Passive cell balancing active.";
         } else {
@@ -215,7 +250,7 @@ void runDiagnosticEngine() {
         }
     } 
     else if (currentRuntime == DEGRADED) {
-        riskIndex = 1; // Low/Medium Risk
+        riskIndex = 1; 
         for (int i = 0; i < 4; i++) {
             if (bmsPack.cellVoltages[i] < 0.1) {
                 operatorAdvisory = "Hardware Warning: Cell " + String(i + 1) + " open circuit detected. Verify harness.";
@@ -226,8 +261,8 @@ void runDiagnosticEngine() {
             }
         }
     } 
-    else if (currentRuntime == FAILSAFE || currentRuntime == SHUTDOWN) {
-        riskIndex = 3; // Critical Hazard
+    else if (currentRuntime == FAILSAFE) {
+        riskIndex = 3; 
         if (bmsPack.maxVoltage > V_OVERVOLTAGE) {
             operatorAdvisory = "CRITICAL FAULT: Cell " + String(bmsPack.strongestCell) + " Overcharge (>4.25V)! Safety relay tripped.";
         } else if (bmsPack.minVoltage < V_UNDERVOLTAGE) {
@@ -256,8 +291,6 @@ void handleCloudTelemetry() {
         Blynk.virtualWrite(V4, bmsPack.cellVoltages[3]);
         Blynk.virtualWrite(V5, bmsPack.imbalancePercent);
         Blynk.virtualWrite(V6, currentRuntime);
-        
-        // Task 6: Stream Executive Dashboard Additions
         Blynk.virtualWrite(V7, operatorAdvisory);
         Blynk.virtualWrite(V8, riskIndex);
     }
@@ -281,7 +314,7 @@ void loop() {
     runBatteryIntelligenceEngine();
     runFaultTolerantKernel();
     runSafetyProtectionKernel();
-    runDiagnosticEngine(); // Executing Task 6 diagnostics
+    runDiagnosticEngine(); 
     updateHMI();
     
     if (Blynk.connected()) {
