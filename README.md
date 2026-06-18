@@ -86,9 +86,11 @@ The cloud telemetry layout uses strict semantic typing and severity-based state 
 | **V6** | `runtime state` | Enum | System tracking state matching device firmware indices |
 | **V7** | `Operator Advisory` | String | Live contextual instructions forwarded from the advisory layer |
 | **V8** | `Risk Index` | Enum | Severity index running automated UI color shifting |
+| **V9** | `Remote System Override` | Integer | Cloud-to-device switch (0 = Active, 1 = Force Safety Shutdown) |
 
 <img width="1506" height="712" alt="image" src="https://github.com/user-attachments/assets/73b885c4-182f-418f-9c5d-19cc430eeae1" />
 
+```
 
 ### 🛠️ Executive State Vector Mappings (Enums)
 
