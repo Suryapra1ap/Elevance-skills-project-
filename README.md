@@ -159,7 +159,7 @@ Feeds the executive analytics dashboard engine, serving localized hazard threat 
 
 ## 🌿 Repository Architecture & Development Milestones
 
-This repository utilizes a modular branching strategy to track development milestones. Each phase of the project contains its own isolated firmware kernel, Wokwi schematics, and individual validation documentation.
+these are sample project for task 1 & task 2 
 
 | Branch Name | Development Focus | Hardware Peripherals Integrated | Artifacts Included |
 | :--- | :--- | :--- | :--- |
