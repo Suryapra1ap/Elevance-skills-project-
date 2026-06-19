@@ -19,7 +19,7 @@ A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Bat
 
 ### Real-Time IoT Cloud Telemetry Video
 > [!TIP]
-> **[Click Here to Watch the Full BMS Operational Video Demonstration]([https://link-to-your-video.com](https://github.com/Suryapra1ap/Elevance-skills-project-/blob/main/Video%20Project%205.mp4))**
+> **[Click Here to Watch the Full BMS Operational Video Demonstration]([https://github.com/Suryapra1ap/Elevance-skills-project-/blob/main/Video%20Project%205.mp4]**
 > *Demonstrating real-time overvoltage protection trips, multi-cell imbalance alarms, and automated fail-safe execution.*
 
 ---
