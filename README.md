@@ -15,7 +15,7 @@ A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Bat
 ## 📺 Live System Demonstration
 
 ### Assembled Hardware Profile (Wokwi Simulation)
-![Wokwi BMS Circuit Diagram](https://github.com/Suryapra1ap/Elevance-skills-project-/blob/main/diagram.png)
+<img width="1284" height="604" alt="image" src="https://github.com/user-attachments/assets/6f65bd5b-436e-4063-ac13-527f847251a4" />
 
 ### Real-Time IoT Cloud Telemetry Video
 > [!TIP]
