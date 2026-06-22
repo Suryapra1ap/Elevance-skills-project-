@@ -56,6 +56,8 @@ unsigned long lastHmiUpdate = 0;
 unsigned long lastScreenRotate = 0;
 unsigned long lastTelemetryUpdate = 0;
 unsigned long lastRelayAction = 0;
+unsigned long recoveryStart = 0;
+const unsigned long RECOVERY_DELAY = 5000;
 
 // Configuration placeholders for Blynk
 char auth[] = "h0POqwSo5mthlO_aB3b9IWY9e21IDVZ5";
@@ -140,9 +142,14 @@ void runFaultTolerantKernel() {
     } else if (bmsPack.health == PACK_FAILURE) {
         currentRuntime = FAILSAFE;
     } else {
+        
+    if(recoveryStart == 0)
+        recoveryStart = millis();
+
+    if(millis() - recoveryStart >= RECOVERY_DELAY)
         currentRuntime = NORMAL;
+        }
     }
-}
 
 // ==========================================
 // 3. Event-Driven Safety Protection Kernel
