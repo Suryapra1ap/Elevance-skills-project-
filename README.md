@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🔋 Adaptive Multi-Cell Battery Intelligence Engine & Safety Kernel</h1>
+  <h1>🔋 Adaptive Multi-Cell Battery Intelligence Engine & Event-Driven Safety Kernel</h1>
   <p><strong>An Automotive-Grade, Event-Driven Battery Management System (BMS) Architecture for ESP32 Systems</strong></p>
 
   <img src="https://img.shields.io/badge/Platform-ESP32-blue?style=for-the-badge&logo=espressif" alt="ESP32 Platform">
@@ -11,6 +11,24 @@
 A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Battery Protection Kernel** on an ESP32 microcontroller. Engineered entirely on a non-blocking asynchronous `millis()` design paradigm, this system manages real-time cell balancing diagnostics, low-latency safety mitigations, localized HMI data rotation, and secure, high-throughput cloud telemetry distribution
 
 ---
+
+## ✨ Key Features
+
+- 4-Cell Battery Monitoring
+- Overvoltage Protection
+- Undervoltage Protection
+- Cell Imbalance Detection
+- Sensor Fault Detection
+- Event-Driven Safety Protection Kernel
+- Relay-Based Battery Isolation
+- Buzzer & Fault LED Alerts
+- Intelligent LCD HMI Dashboard
+- Blynk IoT Cloud Monitoring
+- Runtime State Machine
+- Recovery Logic & Fault Handling
+- Fully Non-Blocking `millis()` Architecture
+
+---  
 
 ## 📺 Live System Demonstration
 
@@ -36,6 +54,55 @@ $$
 
 
 This index drives the fault-tolerant state machine to identify cells suffering from accelerated degradation or micro-shorting before runtime failure occurs.
+
+---
+
+## 🛡 Safety Thresholds
+
+| Parameter | Threshold |
+|------------|------------|
+| Overvoltage Limit | 4.25V |
+| Undervoltage Limit | 3.00V |
+| Sensor Fault (Low) | < 0.10V |
+| Sensor Fault (High) | > 4.49V |
+| Cell Imbalance Detection | Based on Imbalance % |
+| Recovery Delay | 5 Seconds |
+
+---
+
+## 🔄 Runtime State Machine
+
+```text
+                 Sensor Fault
+         +------------------------+
+         |                        |
+         v                        |
++----------------+        +----------------+
+|     NORMAL     | -----> |    DEGRADED    |
++----------------+        +----------------+
+        |
+        |
+        | Overvoltage /
+        | Undervoltage /
+        | Severe Imbalance
+        v
++----------------+
+|    FAILSAFE    |
++----------------+
+        |
+        |
+        | Remote Shutdown
+        v
++----------------+
+|    SHUTDOWN    |
++----------------+
+
+Fault Cleared
+      |
+      +---------> NORMAL
+```
+
+The runtime state machine governs all safety decisions and operational transitions within the Battery Intelligence Engine.
 
 ---
 
@@ -114,8 +181,7 @@ Feeds the executive analytics dashboard engine, serving localized hazard threat 
 | **0** | `Nominal operation` | 🟩 **GREEN** | Safe State | Cell delta under bounds; asset performing within factory spec. |
 | **1** | `Degraded warning state` | 🟨 **YELLOW** | Minor Hazard | Low-level cell voltage divergence; passive balancing active. |
 | **2** | `Sensor anomaly hazard` | 🟧 **ORANGE** | Medium Hazard | Open circuit or rail voltage failure discovered on a cell pin. |
-| **3** | `Safety Isolation  | 🟥 **RED** | Severe Hazard | Overcharge/deep discharge verified; hardware isolation active. |
-
+| **3** | `Safety Isolation Active` | 🟥 **RED** | Severe Hazard | Overcharge/deep discharge verified; hardware isolation active. |
 
 ---
 
@@ -159,7 +225,7 @@ Feeds the executive analytics dashboard engine, serving localized hazard threat 
 
 ## 🌿 Repository Architecture & Development Milestones
 
-these are sample project for task 1 & task 2 
+The repository contains the final integrated project on the `main` branch, along with isolated task demonstrations used during incremental development and validation.
 
 | Branch Name | Development Focus | Hardware Peripherals Integrated | Artifacts Included |
 | :--- | :--- | :--- | :--- |
