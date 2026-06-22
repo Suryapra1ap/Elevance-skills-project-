@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Architecture-Event--Driven%20%2F%20Non--Blocking-orange?style=for-the-badge" alt="Architecture">
 </div>
 <hr />
-A production-grade firmware architecture implementing a **4-Cell Lithium-Ion Battery Protection Kernel** on an ESP32 microcontroller. Engineered entirely on a non-blocking asynchronous `millis()` design paradigm, this system manages real-time cell balancing diagnostics, low-latency safety mitigations, localized HMI data rotation, and secure, high-throughput cloud telemetry distribution
+An ESP32-based Battery Intelligence Engine designed for real-time monitoring and protection of a 4-cell lithium-ion battery pack. The system utilizes a fully non-blocking `millis()`-driven architecture to detect overvoltage, undervoltage, cell imbalance, and sensor anomalies while providing relay-based protection, LCD diagnostics, buzzer alerts, and Blynk cloud monitoring.
 
 ---
 
