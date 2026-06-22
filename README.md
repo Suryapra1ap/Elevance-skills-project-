@@ -242,10 +242,17 @@ The repository contains the final integrated project on the `main` branch, along
 | README.md | Project overview and documentation |
 | Report.md | Detailed technical report |
 | project_resources.md | Wokwi simulation and demonstration video links |
-| diagrams/ | Architecture, state machine, circuit, and dashboard images |
-| embedded_program/ | ESP32 source code and Wokwi files |
+| diagrams | Architecture, state machine, circuit, and dashboard images |
+| embedded_program | ESP32 source code and Wokwi files |
 
 ---
 
+## Author
 
+**Surya Pratap Singh**
 
+B.Tech Electronics and Communication Engineering
+
+ESP32 Battery Intelligence Engine Project
+
+---
