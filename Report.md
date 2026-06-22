@@ -1,4 +1,4 @@
-# Battery Intelligence Engine Using ESP32
+# Adaptive Multi-Cell Battery Intelligence Engine Using ESP32
 
 ## Abstract
 
