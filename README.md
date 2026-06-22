@@ -233,17 +233,17 @@ The repository contains the final integrated project on the `main` branch, along
 | [**`TASK-1-Adaptive-Multi-Cell-Battery-Intelligence-Engine`**](https://github.com/Suryapra1ap/Elevance-skills-project-/tree/sample-Adaptive-Multi-Cell-Battery-Intelligence-Engine) | **Multi-Cell Telemetry & HMI**<br>Validation of core 4-cell parallel ADC tracking. | 4x Cell Potentiometers, LiquidCrystal I2C Display | Isolated Code, Task Readme, Hardware Schematic, Demo Video |
 | [**`TASK-2-Event-Driven-Safety-Protection-Kernel`**](https://github.com/Suryapra1ap/Elevance-skills-project-/tree/sample-Event-Driven-Safety-Protection-Kernel) | **Hardware Protection Layer**<br>Validation of hardware-level isolation trip loops. | 1x Cell Pot, Low/High Voltage Buzzer Alarm, Isolation Relay | Isolated Code, Task Readme, Safety Logic Schematic, Demo Video |
 
----  
+---
 
 ## 📂 Repository Contents
 
 | File / Folder | Description |
 |---------------|-------------|
-| README.md | Project overview and documentation |
+| README.md | Main project documentation |
 | Report.md | Detailed technical report |
-| project_resources.md | Wokwi simulation and demonstration video links |
+| project_resources.md | Wokwi simulation and project demonstration links |
 | diagrams | Architecture, state machine, circuit, and dashboard images |
-| embedded_program | ESP32 source code and Wokwi files |
+| embedded_program | ESP32 firmware, Wokwi diagram, and library configuration |
 
 ---
 
