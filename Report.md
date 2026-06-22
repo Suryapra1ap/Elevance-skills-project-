@@ -292,8 +292,10 @@ The system successfully improves battery safety and provides a strong foundation
 
 ## Author
 
-**Surya Pratap**
+**Surya Pratap Singh**
 
 B.Tech Electronics and Communication Engineering
 
 ESP32 Battery Intelligence Engine Project
+
+---
